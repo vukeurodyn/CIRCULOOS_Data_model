@@ -1,0 +1,134 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:RefurbishedLaptopDPP:REQ-DPP-0001",
+  "type": "RefurbishedLaptopDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "REQ-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "REQ-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Refurbished laptop"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Collection of laptop donations at hub",
+        "actor": "LESOL",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Laptop donations",
+            "flowType": "rawMaterial",
+            "origin": "Donors, at the collection hub (no distance)"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Collected donated units",
+            "flowType": "intermediateProduct",
+            "destination": "Epanekkinisis"
+          }
+        ]
+      },
+      {
+        "operation": "Diagnostics, repair and refurbishment",
+        "actor": "Epanekkinisis",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Laptops in need of refurbishment",
+            "flowType": "secondaryRawMaterial",
+            "origin": "LESOL"
+          },
+          {
+            "material": "Spare parts (if needed)",
+            "flowType": "component",
+            "origin": "Parts suppliers"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Refurbished units ready for distribution",
+            "flowType": "product",
+            "destination": "LESOL"
+          },
+          {
+            "material": "Defective or older parts that cannot be repaired or repurposed",
+            "flowType": "waste",
+            "destination": "Certified e-waste recycling"
+          }
+        ]
+      },
+      {
+        "operation": "Recycling of defective parts",
+        "actor": "Certified e-waste recycling",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Older and defective parts",
+            "flowType": "waste",
+            "origin": "Epanekkinisis"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Recycled materials ready to be put back to market",
+            "flowType": "secondaryRawMaterial"
+          }
+        ]
+      },
+      {
+        "operation": "Delivery of refurbished laptops to final users",
+        "actor": "LESOL",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Refurbished laptops",
+            "flowType": "product",
+            "origin": "Epanekkinisis"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Refurbished laptop delivered to final user",
+            "flowType": "product",
+            "destination": "Final users"
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1 refurbished laptop (reference product: 1 new laptop)"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "req"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "OpenCall_LCI_REQ.xlsx, sheets TO_BE and MODEL (flows named, quantities not yet filled in); dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}

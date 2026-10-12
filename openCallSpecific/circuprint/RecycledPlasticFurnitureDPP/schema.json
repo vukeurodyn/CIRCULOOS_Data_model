@@ -1,0 +1,419 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$schemaVersion": "0.0.1",
+  "modelTags": "circuprint",
+  "derivedFrom": "",
+  "license": "https://raw.githubusercontent.com/european-dynamics-rnd/CIRCULOOS_Data_model/refs/heads/main/LICENSE",
+  "$id": "https://raw.githubusercontent.com/european-dynamics-rnd/CIRCULOOS_Data_model/main/openCallSpecific/circuprint/RecycledPlasticFurnitureDPP/schema.json",
+  "title": "Data model for recycled plastic furniture Digital Product Passport",
+  "description": "CIRCULOOS data model for the Digital Product Passport of large-format furniture 3D printed from recycled thermoplastic in the CIRCUPRINT value chain, covering product identification, the passport time window and the route the product goes through, with the material inputs and outputs of each step. It follows the StainlessSteelDPP model of the CIRCULOOS Data Platform.",
+  "type": "object",
+  "definitions": {
+    "DateTimeProperty": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Property"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "QuantityProperty": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Property"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "description": "Exact measured value, when a single figure is known."
+        },
+        "minValue": {
+          "type": "number",
+          "description": "Lower bound of the value, when the source declares a range or a minimum."
+        },
+        "maxValue": {
+          "type": "number",
+          "description": "Upper bound of the value, when the source declares a range or a maximum."
+        },
+        "unitCode": {
+          "type": "string",
+          "description": "Unit of measurement of the value, given as a UN/CEFACT code where one exists."
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "unitCode"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "value"
+          ]
+        },
+        {
+          "required": [
+            "minValue"
+          ]
+        },
+        {
+          "required": [
+            "maxValue"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "RouteProperty": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Property"
+          ]
+        },
+        "value": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/RouteStep"
+          },
+          "description": "Property. Ordered list of the process steps the product goes through, from the collection of the secondary raw material to the finished product."
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "RouteStep": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "description": "Property. Name of the process step, as named in the project's LCA inventory or value chain description."
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Property. Date and time (ISO 8601, UTC) at which the operation was performed."
+        },
+        "productionStatus": {
+          "type": "string",
+          "description": "Property. Outcome of the operation as reported by the production line, for example OK."
+        },
+        "energyConsumption": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Property. Energy consumed by this route step."
+            },
+            "unitCode": {
+              "type": "string",
+              "description": "Property. UN/CEFACT code of the unit of the consumed energy, for example WHR (watt hour)."
+            }
+          },
+          "required": [
+            "value",
+            "unitCode"
+          ],
+          "additionalProperties": false,
+          "description": "Property. Electricity consumed for this route step."
+        },
+        "actor": {
+          "type": "string",
+          "description": "Property. Value chain partner (or external actor) that performs this step."
+        },
+        "heatConsumption": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Property. Heat consumed by this route step."
+            },
+            "unitCode": {
+              "type": "string",
+              "description": "Property. UN/CEFACT code of the unit of the consumed energy, for example WHR (watt hour)."
+            }
+          },
+          "required": [
+            "value",
+            "unitCode"
+          ],
+          "additionalProperties": false,
+          "description": "Property. Heat consumed for this route step, when reported separately from electricity."
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaterialFlow"
+          },
+          "description": "Property. Materials, ancillaries, fuels and water that enter this route step."
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaterialFlow"
+          },
+          "description": "Property. Products, by-products, wastes and emissions that leave this route step, with their destination."
+        }
+      },
+      "required": [
+        "operation",
+        "date",
+        "productionStatus"
+      ],
+      "additionalProperties": false
+    },
+    "StringProperty": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Property"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "MaterialFlow": {
+      "type": "object",
+      "properties": {
+        "material": {
+          "type": "string",
+          "description": "Property. Name of the material or flow, as written in the source inventory."
+        },
+        "flowType": {
+          "type": "string",
+          "enum": [
+            "rawMaterial",
+            "secondaryRawMaterial",
+            "ancillaryMaterial",
+            "fuel",
+            "water",
+            "packaging",
+            "component",
+            "intermediateProduct",
+            "product",
+            "byProduct",
+            "waste",
+            "wastewater",
+            "emission"
+          ],
+          "description": "Property. Role of the flow in the step. Secondary raw materials and wastes are the flows that link value chains in CIRCULOOS."
+        },
+        "quantity": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Property. Amount of the flow per functional unit (see functionalUnit)."
+            },
+            "unitCode": {
+              "type": "string",
+              "description": "Property. UN/CEFACT code of the unit, for example KGM (kilogram), LTR (litre), MTK (square metre), H87 (piece)."
+            }
+          },
+          "required": [
+            "value",
+            "unitCode"
+          ],
+          "additionalProperties": false
+        },
+        "origin": {
+          "type": "string",
+          "description": "Property. Supplier or place the input comes from."
+        },
+        "destination": {
+          "type": "string",
+          "description": "Property. Partner or treatment the output goes to (next actor, recycling, landfill, incineration)."
+        },
+        "transportDistance": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Property. Distance between origin and destination, usually in KMT (kilometre)."
+            },
+            "unitCode": {
+              "type": "string",
+              "description": "Property. UN/CEFACT code of the unit, for example KGM (kilogram), LTR (litre), MTK (square metre), H87 (piece)."
+            }
+          },
+          "required": [
+            "value",
+            "unitCode"
+          ],
+          "additionalProperties": false
+        },
+        "transportMode": {
+          "type": "string",
+          "description": "Property. Means of transport, for example truck, van, car or ship."
+        }
+      },
+      "required": [
+        "material",
+        "flowType"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Property. Unique entity identifier, with the format urn:ngsi-ld:RecycledPlasticFurnitureDPP:<dppId>."
+        },
+        "type": {
+          "type": "string",
+          "description": "Property. NGSI Entity type. It has to be RecycledPlasticFurnitureDPP",
+          "enum": [
+            "RecycledPlasticFurnitureDPP"
+          ]
+        },
+        "dppId": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/StringProperty"
+            }
+          ],
+          "description": "Property. Unique UUID of the Digital Product Passport of this product."
+        },
+        "factoryInternalBarcode": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/StringProperty"
+            }
+          ],
+          "description": "Property. Product unique identifier (barcode) assigned at the factory."
+        },
+        "productName": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/StringProperty"
+            }
+          ],
+          "description": "Property. Commercial product name, for example Chair."
+        },
+        "startTime": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/DateTimeProperty"
+            }
+          ],
+          "description": "Property. Start time of the Digital Product Passport (ISO 8601 date-time, UTC)."
+        },
+        "endTime": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/DateTimeProperty"
+            }
+          ],
+          "description": "Property. End time of the Digital Product Passport (ISO 8601 date-time, UTC)."
+        },
+        "route": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/RouteProperty"
+            }
+          ],
+          "description": "Property. The process steps the product goes through, each with its operation name, actor, date, production status, energy consumption and material inputs and outputs."
+        },
+        "functionalUnit": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/StringProperty"
+            }
+          ],
+          "description": "Property. Reference amount of product that the quantities in route are given for, as defined in the project's LCA."
+        },
+        "recycledContent": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/QuantityProperty"
+            }
+          ],
+          "description": "Property. Expected unitCode: P1. Share of recycled or secondary material in the product, by mass."
+        },
+        "valueChain": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/StringProperty"
+            }
+          ],
+          "description": "Property. Identifier of the CIRCULOOS value chain the record belongs to (here \"circuprint\")."
+        },
+        "dataSource": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/StringProperty"
+            }
+          ],
+          "description": "Property. Name of the source file or dataset the record was taken from, for traceability."
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "type",
+    "dppId",
+    "factoryInternalBarcode",
+    "productName",
+    "startTime",
+    "route"
+  ]
+}

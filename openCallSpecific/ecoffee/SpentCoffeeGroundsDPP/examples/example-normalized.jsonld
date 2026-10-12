@@ -1,0 +1,236 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:SpentCoffeeGroundsDPP:ECOFFEE-DPP-0001",
+  "type": "SpentCoffeeGroundsDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "ECOFFEE-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "ECF-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Feed for sheep (including dried spent coffee grounds)"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Collection of spent coffee grounds",
+        "actor": "EUSKOVAZZA",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Spent coffee grain",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 1000,
+              "unitCode": "KGM"
+            },
+            "origin": "Generation points",
+            "transportDistance": {
+              "value": 100,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Van - small truck"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Spent coffee grain (collected)",
+            "flowType": "intermediateProduct",
+            "quantity": {
+              "value": 1000,
+              "unitCode": "KGM"
+            },
+            "destination": "AZTI"
+          }
+        ]
+      },
+      {
+        "operation": "Drying of spent coffee grounds",
+        "actor": "AZTI",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "energyConsumption": {
+          "value": 53.58,
+          "unitCode": "KWH"
+        },
+        "heatConsumption": {
+          "value": 659.99,
+          "unitCode": "KWH"
+        },
+        "inputs": [
+          {
+            "material": "Spent coffee grain (collected)",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 1000,
+              "unitCode": "KGM"
+            },
+            "origin": "EUSKOVAZZA"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Dried coffee grains",
+            "flowType": "intermediateProduct",
+            "quantity": {
+              "value": 401,
+              "unitCode": "KGM"
+            },
+            "destination": "AZTI (feed) and FUMIHOGAR (biocide)"
+          }
+        ]
+      },
+      {
+        "operation": "Feed formulation",
+        "actor": "AZTI",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "energyConsumption": {
+          "value": 18,
+          "unitCode": "KWH"
+        },
+        "inputs": [
+          {
+            "material": "Dried coffee grains",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 100,
+              "unitCode": "KGM"
+            },
+            "origin": "AZTI drying"
+          },
+          {
+            "material": "Barley from Spain",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 190,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 500,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Truck EURO5"
+          },
+          {
+            "material": "Oats from Spain",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 240,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 500,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Truck EURO5"
+          },
+          {
+            "material": "Maize from Brazil",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 150,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 7000,
+              "unitCode": "SMI"
+            },
+            "transportMode": "Boat"
+          },
+          {
+            "material": "Distillers Dried Grains (average market)",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 50,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 200,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Truck EURO5"
+          },
+          {
+            "material": "Rapeseed meal from France",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 160,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 1500,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Truck EURO5"
+          },
+          {
+            "material": "Rapeseed oil from France",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 50,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 1500,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Truck EURO5"
+          },
+          {
+            "material": "Molasses from Spain",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 30,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 500,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Truck EURO5"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Feed for sheeps",
+            "flowType": "product",
+            "quantity": {
+              "value": 1000,
+              "unitCode": "KGM"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1000 kg of feed for sheep (collection and drying steps given per 1000 kg of spent coffee grounds)"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "ecoffee"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "OpenCall_LCI_ECOFFEE_vFinal.xlsx, sheet TO_BE (partners 1, 2 and 4); dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}

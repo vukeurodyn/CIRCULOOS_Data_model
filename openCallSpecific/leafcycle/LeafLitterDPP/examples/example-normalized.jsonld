@@ -1,0 +1,183 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:LeafLitterDPP:LEAFCYCLE-DPP-0001",
+  "type": "LeafLitterDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "LEAFCYCLE-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "LC-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Leaf-based cat litter (packed)"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Leaf collection and sorting",
+        "actor": "LLC Rīgas Meži",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Fallen leaves (sorted, clean)",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 1.11,
+              "unitCode": "KGM"
+            }
+          },
+          {
+            "material": "Diesel for collection equipment",
+            "flowType": "fuel",
+            "quantity": {
+              "value": 0.02,
+              "unitCode": "LTR"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Sorted leaf biomass delivered",
+            "flowType": "intermediateProduct",
+            "quantity": {
+              "value": 1.11,
+              "unitCode": "KGM"
+            },
+            "destination": "LLC FAT CAT LEAVES",
+            "transportDistance": {
+              "value": 20,
+              "unitCode": "KMT"
+            }
+          },
+          {
+            "material": "Contaminants removed (stones/plastic)",
+            "flowType": "waste",
+            "quantity": {
+              "value": 0.01,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 5,
+              "unitCode": "KMT"
+            }
+          },
+          {
+            "material": "CO2 from diesel use (fuel-based)",
+            "flowType": "emission",
+            "quantity": {
+              "value": 0.02,
+              "unitCode": "LTR"
+            }
+          }
+        ]
+      },
+      {
+        "operation": "Processing and pelletizing",
+        "actor": "LLC FAT CAT LEAVES",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "energyConsumption": {
+          "value": 0.7,
+          "unitCode": "KWH"
+        },
+        "inputs": [
+          {
+            "material": "Leaf biomass from Rīgas Meži",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 1.11,
+              "unitCode": "KGM"
+            },
+            "origin": "LLC Rīgas Meži",
+            "transportDistance": {
+              "value": 20,
+              "unitCode": "KMT"
+            }
+          },
+          {
+            "material": "Packaging: paper bag",
+            "flowType": "packaging",
+            "quantity": {
+              "value": 0.05,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 150,
+              "unitCode": "KMT"
+            }
+          },
+          {
+            "material": "Label/sticker",
+            "flowType": "packaging",
+            "quantity": {
+              "value": 0.002,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 150,
+              "unitCode": "KMT"
+            }
+          },
+          {
+            "material": "Water",
+            "flowType": "water",
+            "quantity": {
+              "value": 2,
+              "unitCode": "LTR"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Leaf-based cat litter (packed)",
+            "flowType": "product",
+            "quantity": {
+              "value": 1,
+              "unitCode": "KGM"
+            }
+          },
+          {
+            "material": "Dust/fines + process losses",
+            "flowType": "waste",
+            "quantity": {
+              "value": 0.11,
+              "unitCode": "KGM"
+            },
+            "transportDistance": {
+              "value": 15,
+              "unitCode": "KMT"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1 kg finished product (alternative: 6 kg/month/cat)"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "leafcycle"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "OpenCall_LCI_Template_LeafCycle.xlsx, sheet TO_BE; dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}

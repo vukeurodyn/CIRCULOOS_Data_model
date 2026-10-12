@@ -1,0 +1,127 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:RecycledPlasticFurnitureDPP:CIRCUPRINT-DPP-0001",
+  "type": "RecycledPlasticFurnitureDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "CIRCUPRINT-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "IDONIAL-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Chair"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Supply of plastic pellets",
+        "actor": "Contenedores LOLO",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "outputs": [
+          {
+            "material": "Plastic pellets",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 20,
+              "unitCode": "KGM"
+            },
+            "destination": "IDONIAL",
+            "transportDistance": {
+              "value": 411,
+              "unitCode": "KMT"
+            }
+          }
+        ]
+      },
+      {
+        "operation": "Large-format 3D printing (BAAM)",
+        "actor": "IDONIAL",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "energyConsumption": {
+          "value": 0.6,
+          "unitCode": "KWH"
+        },
+        "inputs": [
+          {
+            "material": "Plastic pellets",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 20,
+              "unitCode": "KGM"
+            },
+            "origin": "Contenedores LOLO",
+            "transportDistance": {
+              "value": 411,
+              "unitCode": "KMT"
+            }
+          },
+          {
+            "material": "Liquid adhesive",
+            "flowType": "ancillaryMaterial",
+            "quantity": {
+              "value": 500,
+              "unitCode": "MLT"
+            },
+            "origin": "Filament2Print",
+            "transportDistance": {
+              "value": 430,
+              "unitCode": "KMT"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Chair",
+            "flowType": "product",
+            "quantity": {
+              "value": 1,
+              "unitCode": "H87"
+            }
+          },
+          {
+            "material": "Debries of plastic",
+            "flowType": "waste",
+            "quantity": {
+              "value": 100,
+              "unitCode": "GRM"
+            },
+            "destination": "COGERSA's dump",
+            "transportDistance": {
+              "value": 21,
+              "unitCode": "KMT"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1 chair"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "circuprint"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "OpenCall_LCI_Template_CIRCUPRINT.xlsx, sheet TO_BE; printing technology (BAAM) from the CIRCUPRINT project description; dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}

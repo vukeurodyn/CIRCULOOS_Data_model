@@ -1,0 +1,97 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:RecycledToyDPP:REPLAY-DPP-0001",
+  "type": "RecycledToyDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "REPLAY-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "RP-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Toy (partially made with recycled plastic)"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Collection of plastic scrap",
+        "actor": "Juguetes Molto",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "outputs": [
+          {
+            "material": "Plastic scrap (PP, ABS)",
+            "flowType": "waste",
+            "destination": "Plasnovo"
+          }
+        ]
+      },
+      {
+        "operation": "Cleaning, sorting and mechanical recycling into granulates",
+        "actor": "Plasnovo",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Plastic scrap (PP, ABS)",
+            "flowType": "waste",
+            "origin": "Juguetes Molto"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Recycled plastic granulate (PP, ABS)",
+            "flowType": "secondaryRawMaterial",
+            "destination": "Juguetes Molto"
+          }
+        ]
+      },
+      {
+        "operation": "Injection molding of toy components",
+        "actor": "Juguetes Molto",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Recycled plastic granulate (PP, ABS)",
+            "flowType": "secondaryRawMaterial",
+            "origin": "Plasnovo"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Toy (partially made with recycled plastic)",
+            "flowType": "product"
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1 toy (reference product: toy made with conventional plastic only)"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "replay"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "OpenCall_LCI_REPLAY.xlsx, sheet MODEL (quantities not yet filled in); process steps from the RE-PLAY project description (PP and ABS, Juguetes Molto, Plasnovo); dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}

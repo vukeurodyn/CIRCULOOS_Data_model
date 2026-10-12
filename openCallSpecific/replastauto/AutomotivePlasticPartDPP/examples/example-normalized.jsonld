@@ -1,0 +1,94 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:AutomotivePlasticPartDPP:REPLASTAUTO-DPP-0001",
+  "type": "AutomotivePlasticPartDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "REPLASTAUTO-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "ELVEZ-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Automotive plastic part (Housing)"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Injection molding",
+        "actor": "ELVEZ",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Plastic granulates (ABS, PC, PBT, PA, PA66, PMMA, PEI, PES)",
+            "flowType": "rawMaterial",
+            "origin": "Raw material supplier"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Automotive plastic part (Housing)",
+            "flowType": "product"
+          },
+          {
+            "material": "Scrap material (sprues, rejects)",
+            "flowType": "waste",
+            "destination": "AI vision sorting"
+          }
+        ]
+      },
+      {
+        "operation": "AI vision sorting of post-industrial scrap",
+        "actor": "ELVEZ",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "inputs": [
+          {
+            "material": "Scrap material (sprues, rejects)",
+            "flowType": "waste",
+            "origin": "ELVEZ injection molding"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Sorted reground plastic",
+            "flowType": "secondaryRawMaterial",
+            "destination": "ELVEZ injection molding (non-critical parts)"
+          },
+          {
+            "material": "Plastic not suitable for internal reuse",
+            "flowType": "waste",
+            "destination": "External recycler"
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1 automotive plastic part (same product in AS-IS and TO-BE)"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "replastauto"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "RePlastAuto-20260330_GRETA_tool_OpenCall_LCI_Template_ELVEZ.xlsx, sheets MODEL and AS_IS (quantities not filled in; ELVEZ marks the information as sensitive data); sorting step from the RePlastAuto project description; dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}

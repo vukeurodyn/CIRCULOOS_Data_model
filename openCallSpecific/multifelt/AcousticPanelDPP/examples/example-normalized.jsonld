@@ -1,0 +1,165 @@
+{
+  "@context": [
+    "http://circuloos-ld-context/circuloos-context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.8.jsonld"
+  ],
+  "id": "urn:ngsi-ld:AcousticPanelDPP:MULTIFELT-DPP-0001",
+  "type": "AcousticPanelDPP",
+  "dppId": {
+    "type": "Property",
+    "value": "MULTIFELT-DPP-0001"
+  },
+  "factoryInternalBarcode": {
+    "type": "Property",
+    "value": "MF-0001"
+  },
+  "productName": {
+    "type": "Property",
+    "value": "Filled Acoustic Panel 100x100 cm"
+  },
+  "startTime": {
+    "type": "Property",
+    "value": "2026-01-01T00:00:00Z"
+  },
+  "endTime": {
+    "type": "Property",
+    "value": "2026-01-31T00:00:00Z"
+  },
+  "route": {
+    "type": "Property",
+    "value": [
+      {
+        "operation": "Making wooden frame",
+        "actor": "Wooden frame supplier",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "energyConsumption": {
+          "value": 0.0591,
+          "unitCode": "KWH"
+        },
+        "inputs": [
+          {
+            "material": "Raw material for wooden frame (pine slat, 392 cm)",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 0.25,
+              "unitCode": "KGM"
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Wooden frame",
+            "flowType": "component",
+            "quantity": {
+              "value": 0.25,
+              "unitCode": "KGM"
+            },
+            "destination": "Multifelt",
+            "transportDistance": {
+              "value": 22,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Car"
+          },
+          {
+            "material": "Wood Waste",
+            "flowType": "waste",
+            "quantity": {
+              "value": 0.032,
+              "unitCode": "KGM"
+            },
+            "destination": "Incineration"
+          }
+        ]
+      },
+      {
+        "operation": "Shredding of leftovers, filling, covering and assembly",
+        "actor": "Multifelt",
+        "date": "2026-01-01T00:00:00Z",
+        "productionStatus": "Not reported",
+        "energyConsumption": {
+          "value": 0.125333,
+          "unitCode": "KWH"
+        },
+        "inputs": [
+          {
+            "material": "Leather leftovers",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 0.80784,
+              "unitCode": "KGM"
+            },
+            "origin": "KHOANI and B&A",
+            "transportDistance": {
+              "value": 250,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Car"
+          },
+          {
+            "material": "Felt leftovers",
+            "flowType": "secondaryRawMaterial",
+            "quantity": {
+              "value": 1.7136,
+              "unitCode": "KGM"
+            },
+            "origin": "Multifelt"
+          },
+          {
+            "material": "Virgin Felt",
+            "flowType": "rawMaterial",
+            "quantity": {
+              "value": 4.26,
+              "unitCode": "MTK"
+            }
+          },
+          {
+            "material": "Lubricating oil",
+            "flowType": "ancillaryMaterial",
+            "quantity": {
+              "value": 0.0375,
+              "unitCode": "LTR"
+            }
+          },
+          {
+            "material": "Wooden frame",
+            "flowType": "component",
+            "quantity": {
+              "value": 0.25,
+              "unitCode": "KGM"
+            },
+            "origin": "Wooden frame supplier",
+            "transportDistance": {
+              "value": 22,
+              "unitCode": "KMT"
+            },
+            "transportMode": "Car"
+          }
+        ],
+        "outputs": [
+          {
+            "material": "Filled Acoustic Panel 100x100 cm",
+            "flowType": "product",
+            "quantity": {
+              "value": 1,
+              "unitCode": "H87"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "functionalUnit": {
+    "type": "Property",
+    "value": "1 filled acoustic panel 100x100 cm (TO-BE1: filling of 30% leather leftovers and 70% felt leftovers)"
+  },
+  "valueChain": {
+    "type": "Property",
+    "value": "multifelt"
+  },
+  "dataSource": {
+    "type": "Property",
+    "value": "OpenCall_LCI_MOTOTEXTILE,B&A,MULTIFELT.xlsx, sheet LCA_TOBE1; frame raw material from Multifelt_SUST_template_for_woolfelt_20260128.xlsx, sheet I&O Multifelt (step 2); dppId, factoryInternalBarcode, dates and productionStatus are illustrative; material flows are taken from the source"
+  }
+}
